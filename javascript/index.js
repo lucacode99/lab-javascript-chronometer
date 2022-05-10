@@ -19,6 +19,7 @@ function printTime() {
   minUniElement.innerText = actualTime[1]
   secDecElement.innerText = actualTime[3]
   secUniElement.innerText = actualTime[4]
+  
 }
 
 
@@ -37,16 +38,17 @@ function printMilliseconds() {
 
 function printSplit() {
   let timeStamps = document.createElement('li');
-  //console.log(splitsElement); 
   splitsElement.append(timeStamps);
-
   timeStamps.innerHTML = `${minDecElement.innerText}${minUniElement.innerText}:${secDecElement.innerText}${secUniElement.innerText}`
-  
-  
 }
 
 function clearSplits() {
-  // ... your code goes here
+  chronometer.reset();
+  minDecElement.innerText = 0; 
+  minUniElement.innerText = 0;
+  secDecElement.innerText = 0;
+  secUniElement.innerText = 0;
+  splits.innerHTML = ' ';
 }
 
 function setStopBtn() {
@@ -69,6 +71,10 @@ function setResetBtn() {
   btnRightElement.className = 'btn reset'
 }
 
+function stopMeasurement() {
+  chronometer.stop()
+}
+
 // Start/Stop Button
 btnLeftElement.addEventListener('click', () => {
 
@@ -80,6 +86,8 @@ btnLeftElement.addEventListener('click', () => {
   } else if (btnLeftElement.className.includes('stop')) {
     setStartBtn();
     setResetBtn();
+    stopMeasurement()
+           
     
   }
        
@@ -89,11 +97,10 @@ btnLeftElement.addEventListener('click', () => {
 btnRightElement.addEventListener('click', () => {
 
   if (btnRightElement.className.includes('reset')){
-    //setSplitBtn();
+    clearSplits()
     
   } else if (btnRightElement.className.includes('split')){
-  //setResetBtn();
-  printSplit()
+    printSplit()
 }
  
 });

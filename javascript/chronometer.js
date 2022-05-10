@@ -12,6 +12,7 @@ class Chronometer {
     
   }
 
+
   getMinutes() {
     let sumOfTime = Math.floor(this.currentTime / 60)
     return Number(sumOfTime);
